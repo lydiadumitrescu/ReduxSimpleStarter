@@ -1,5 +1,4 @@
-export default function(){
-  return {
+export default {
     "do":[
       {
         "video" : "https://www.youtube.com/embed/ljYtmcCMok0",
@@ -23,4 +22,3 @@ export default function(){
      
     ]
   }
-}

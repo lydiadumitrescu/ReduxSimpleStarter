@@ -1,5 +1,4 @@
-export default function(){
-  return {
+export default  {
     "do":[
       {
         "img":"https://2.bp.blogspot.com/-wA3udToDOKU/WcS_P-iAoQI/AAAAAAAAXr0/nPkFzQdg9fQoIZyAMnemXO2FUfV4UfTsACLcBGAs/s1600/DSC-071.jpg",
@@ -55,5 +54,3 @@ export default function(){
       }
     ]
   }
-
-}

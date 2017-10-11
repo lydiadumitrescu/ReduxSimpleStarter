@@ -5,9 +5,9 @@ const ImgItem = (props) => {
 
         return (
             <li
-                key={props.img}
+                key={props.key}
                 className="list-group-item">
-                <img src={props.img} />
+                <img src={props.img} width="800" height="600"/>
                 <span><br />{props.description} </span>
             </li>
         );

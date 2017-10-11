@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { BrowserRouter, Route , Switch } from 'react-router-dom';
 
 import App from './components/app';
-import reducers from './reducers';
+import ListItems from './components/list-items';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
+    <BrowserRouter>
+      <div>
+        <Switch>
+          <Route path='/list/:type' component={ListItems} />
+          <Route path='/' component={App} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   , document.querySelector('.container'));
