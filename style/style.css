@@ -23,7 +23,7 @@ body{
   margin-right: auto;
   text-align: center;
 }
-.container-list img {
+.container-list img, .container-list video {
   padding-bottom: 20px;
 }
 
