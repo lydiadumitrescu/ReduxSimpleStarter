@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// import ImgFiles from '../reducers/reducer_imgFiles';
-// import VideoFiles from '../reducers/reducer_videoFiles';
-
 import ImgItem from './img-item';
 import VideoItem from './video-item';
 
