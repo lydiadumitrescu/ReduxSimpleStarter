@@ -3,17 +3,27 @@ import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
 	renderField (field) {
+		console.log(field.input)
 		return (
 			<div className="form-group">
 				<label>{field.label}</label>
 				<input
 					className="form-control"
 					type="text"
-					{...field.input}				
+					name={field.input.name}
+					onBlur={field.input.onBlur}
+					onChange={field.input.onChange}
+					onDragStart={field.input.onDragStart}
+					onDrop={field.input.onDrop}
+					onFocus={field.input.onFocus}
+
+
+					value={field.input.value}
 				/>
 			</div>
 		);
 	}
+	// {...field.input}
 
 	render() {
 		return (
@@ -22,6 +32,7 @@ class PostsNew extends Component {
 					name="title"
 					label="Title"
 					component={this.renderField}
+					onChange={}
 				/>
 				<Field
 					name="tags"
@@ -45,6 +56,16 @@ function validate(values) {
 
 	if(!values.title) {
 		errors.title = "Enter a title!"
+	}
+
+	
+	if(!values.categories) {
+		errors.categories = "Enter some categories!"
+	}
+
+	
+	if(!values.content) {
+		errors.content = "Enter some content!"
 	}
 
 	return errors;
