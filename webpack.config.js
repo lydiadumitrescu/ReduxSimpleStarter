@@ -1,29 +1,26 @@
 module.exports = {
   entry: [
-    './src/index.js'
+    './src/index.tsx'
   ],
   output: {
     path: __dirname,
     publicPath: '/',
     filename: 'bundle.js',
-    sourceMapFilename: '[file].map'
-    
+    //sourceMapFilename: '[file].map'
   },
   module: {
     loaders: [{
       exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['react', 'es2015', 'stage-1']
-      }
+      loader: 'awesome-typescript-loader',
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ["", ".webpack.js", ".ts", ".tsx", ".js"]
   },
   devServer: {
     historyApiFallback: true,
     contentBase: './'
   },
-  devtool: 'source-map'  
+  devtool: 'inline-source-map',
+  //devtool: 'source-map'  
 };
