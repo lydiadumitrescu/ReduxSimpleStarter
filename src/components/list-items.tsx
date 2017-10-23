@@ -3,7 +3,7 @@ import { Component, Props } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 import ListItem from './list-item';
-import {SrcFilesType, SrcFilesTypePart} from '../reducers/src-files';
+import { SrcFilesType, SrcFilesTypePart } from '../reducers/src-files';
 
 import { connect } from 'react-redux';
 
@@ -11,10 +11,10 @@ interface ListItemsType {
 	type: string;
 }
 
-class ListItems extends Component< {srcFiles: SrcFilesType, type: string}, any> {
-	constructor(props: {srcFiles: SrcFilesType, type: string}) {
+class ListItems extends Component<{ srcFiles: SrcFilesType, type: string }, any> {
+	constructor(props: { srcFiles: SrcFilesType, type: string }) {
 		super(props);
-		function filterType (file : SrcFilesTypePart) {
+		function filterType(file: SrcFilesTypePart) {
 			return file.type === props.type;
 		}
 
@@ -25,11 +25,9 @@ class ListItems extends Component< {srcFiles: SrcFilesType, type: string}, any> 
 
 	renderList(list: SrcFilesTypePart[]) {
 		return list.map((obj) => {
-			if(!obj.src){
+			if (!obj.src) {
 				return (<div>Some error occured in list!</div>);
-			} 
-
-			//console.log(obj);
+			}
 
 			return (
 				<ListItem key={obj.src} item={obj} />
@@ -51,11 +49,11 @@ class ListItems extends Component< {srcFiles: SrcFilesType, type: string}, any> 
 					<div className="white-space"></div>
 				</div>
 			);
-		  });
+		});
 	}
 
 	render() {
-		if(!this.props.srcFiles) {
+		if (!this.props.srcFiles) {
 			return (<div>Some error occured!</div>);
 		}
 
@@ -69,12 +67,12 @@ class ListItems extends Component< {srcFiles: SrcFilesType, type: string}, any> 
 }
 
 
-function mapStateToProps(state: {srcFiles: SrcFilesType}, props: any): {srcFiles: SrcFilesType, type: string}{
+function mapStateToProps(state: { srcFiles: SrcFilesType }, props: any): { srcFiles: SrcFilesType, type: string } {
 	return {
 		srcFiles: state.srcFiles,
 		type: props.match.params.type,
 	}
-  }
-  
+}
+
 export default connect(mapStateToProps, {})(ListItems);
 

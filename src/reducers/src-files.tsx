@@ -1,5 +1,5 @@
-export type SrcFilesTypePart =  { src: string, description: string, type: "image" | "video" };
-export type SrcFilesType =  { do: SrcFilesTypePart[], doNot: SrcFilesTypePart[] }
+export type SrcFilesTypePart = { src: string, description: string, type: "image" | "video" };
+export type SrcFilesType = { do: SrcFilesTypePart[], doNot: SrcFilesTypePart[] }
 
 const srcFiles: SrcFilesType = {
   "do": [
