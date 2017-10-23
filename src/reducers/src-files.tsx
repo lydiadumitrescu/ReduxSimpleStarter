@@ -91,6 +91,6 @@ const srcFiles: SrcFilesType = {
   ]
 }
 
-export default srcFiles;
-
-
+export default () => {
+  return srcFiles;
+}

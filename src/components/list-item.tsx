@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { SrcFilesTypePart} from '../inputs/src-files';
+import { SrcFilesTypePart} from '../reducers/src-files';
 
 interface IPropsListItem {
     item: SrcFilesTypePart
@@ -23,7 +23,6 @@ class ListItem extends Component<IPropsListItem, {}> {
 
     render() {
         let item = this.props.item;
-        console.log(this.props.item);
 
         return (
             <li

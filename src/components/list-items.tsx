@@ -3,23 +3,23 @@ import { Component, Props } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 import ListItem from './list-item';
-import srcFiles, {SrcFilesType, SrcFilesTypePart} from '../inputs/src-files';
+import {SrcFilesType, SrcFilesTypePart} from '../reducers/src-files';
+
+import { connect } from 'react-redux';
 
 interface ListItemsType {
 	type: string;
 }
 
-class ListItems extends Component<RouteComponentProps<ListItemsType>, SrcFilesType> {
-	constructor(props: RouteComponentProps<ListItemsType>) {
+class ListItems extends Component< {srcFiles: SrcFilesType, type: string}, any> {
+	constructor(props: {srcFiles: SrcFilesType, type: string}) {
 		super(props);
-		this.state = {
-			do: srcFiles.do.filter(filterType),
-			doNot:srcFiles.doNot.filter(filterType)
+		function filterType (file : SrcFilesTypePart) {
+			return file.type === props.type;
 		}
 
-		function filterType (file : SrcFilesTypePart) {
-			return file.type === props.match.params.type;
-		}
+		this.props.srcFiles.do = this.props.srcFiles.do.filter(filterType);
+		this.props.srcFiles.doNot = this.props.srcFiles.doNot.filter(filterType);
 
 	}
 
@@ -41,7 +41,7 @@ class ListItems extends Component<RouteComponentProps<ListItemsType>, SrcFilesTy
 		return Object.keys(srcFiles).map((key: keyof SrcFilesType) => {
 			let obj = srcFiles[key];
 			return (
-				<div>
+				<div key={key}>
 					<div className="container-list" id={key}>
 						<h3> {key} </h3>
 						<ul className="list-group">
@@ -55,19 +55,26 @@ class ListItems extends Component<RouteComponentProps<ListItemsType>, SrcFilesTy
 	}
 
 	render() {
-		if(!this.state || !this.state.do || !this.state.doNot) {
+		if(!this.props.srcFiles) {
 			return (<div>Some error occured!</div>);
 		}
 
 		return (
 			<div>
 				<Link to="/" className="btn btn-secondary">Home</Link>
-				{this.renderListProps(this.state)}
+				{this.renderListProps(this.props.srcFiles)}
 			</div>
 		);
 	}
 }
 
 
+function mapStateToProps(state: {srcFiles: SrcFilesType}, props: any): {srcFiles: SrcFilesType, type: string}{
+	return {
+		srcFiles: state.srcFiles,
+		type: props.match.params.type,
+	}
+  }
+  
+export default connect(mapStateToProps, {})(ListItems);
 
-export default ListItems;
